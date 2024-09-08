@@ -11,9 +11,9 @@ const config: Config = {
       gridTemplateRows: {
         app: 'min-content max-content',
       },
-    },
-    fontFamily: {
-      sans: ['var(--font-inter)'],
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+      },
     },
   },
   plugins: [],
