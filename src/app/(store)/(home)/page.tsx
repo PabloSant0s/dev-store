@@ -14,6 +14,15 @@ async function getFeaturedProducts(): Promise<Product[]> {
   return await response.json()
 }
 
+export async function generateStaticParams() {
+  const response = await api('/products/featured')
+  const products: Product[] = await response.json()
+
+  return products.map((product) => {
+    return { slug: product.slug }
+  })
+}
+
 export const metadata: Metadata = {
   title: 'Home',
 }
