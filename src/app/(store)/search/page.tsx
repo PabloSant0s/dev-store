@@ -14,8 +14,6 @@ interface SearchProps {
   searchParams: { q: string }
 }
 
-export const dynamic = 'force-dynamic'
-
 export default async function Search({ searchParams }: SearchProps) {
   const { q: query } = searchParams
 
