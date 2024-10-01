@@ -4,14 +4,14 @@ import { AddToCartButton } from '@/components/add-to-cart-button'
 import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
 
-export async function getProduct(slug: string) {
+async function getProduct(slug: string): Promise<Product> {
   const response = await api(`/products/${slug}`, {
     next: {
       revalidate: 60 * 60 * 1, // 1 hour
     },
   })
 
-  return (await response.json()) as Product
+  return await response.json()
 }
 
 interface ProductPageProps {
