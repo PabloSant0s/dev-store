@@ -21,10 +21,9 @@ jobs:
           run_install: false
       
       - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-  
+        id: store-path
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -45,8 +44,8 @@ jobs:
         run: pnpm install
       
       - name: Cypress run
-        uses: cypress-io/github-action@v6
-        env: 
+        uses: cypress-io/github-action@v6.6.0
+        env:
           APP_URL: "http://localhost:3000"
           NEXT_PUBLIC_API_BASE_URL: "https://ignite-devstore-api.vercel.app"
         with:
