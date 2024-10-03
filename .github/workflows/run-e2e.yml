@@ -32,6 +32,14 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
+      - uses: actions/cache@v3
+        name: Setup Cypress cache
+        with:
+          path: |
+            ~/.cache/Cypress
+            ./cypress/videos
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/cypress.json') }}
       
       - name: Install dependencies
         run: pnpm install
@@ -42,5 +50,5 @@ jobs:
           APP_URL: "http://localhost:3000"
           NEXT_PUBLIC_API_BASE_URL: "https://ignite-devstore-api.vercel.app"
         with:
-          build: npm run build
-          start: npm start
+          build: pnpm run build
+          start: pnpm start
