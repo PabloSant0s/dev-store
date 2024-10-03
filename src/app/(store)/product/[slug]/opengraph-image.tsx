@@ -35,10 +35,7 @@ export async function getProduct(slug: string) {
 export default async function Image({ params }: ImageProps) {
   const product = await getProduct(params.slug)
 
-  const productImageURL = new URL(
-    product.image,
-    env!.NEXT_PUBLIC_APP_URL,
-  ).toString()
+  const productImageURL = new URL(product.image, env!.APP_URL).toString()
   return new ImageResponse(
     (
       // ImageResponse JSX element
